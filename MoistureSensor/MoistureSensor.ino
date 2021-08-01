@@ -84,5 +84,5 @@ void loop() {
     }
 
     Serial.println("Wait....");
-    delay(10000);
+    delay(60*60*1000);
 }

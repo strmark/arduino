@@ -10,6 +10,7 @@ Copy the folder to the Arduino Library folder and adjust them with the correct s
 ##### ESP8266 sketch files
 
 - blink_led test sketch file which blinks the led on the esp8266
+- cayenne_mqtt cayenne test example
 - dht_moist_pub 
 - dht_tester test sketch file for testing the DHT11 sensor
 - dhtpub dht and mqtt sketch file sending DHT11 sensor data to a MQTT broker
