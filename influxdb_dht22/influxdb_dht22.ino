@@ -15,7 +15,7 @@
 #define TZ_INFO "CET-1CEST,M3.5.0,M10.5.0/3"
 
 #define SENSOR_DIGI D5
-#define SENSOR_SWITCH D7
+#define SENSOR_SWITCH D6
 
 ESP8266WiFiMulti wifiMulti;
 

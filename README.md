@@ -26,3 +26,4 @@ Copy the folder to the Arduino Library folder and adjust them with the correct s
 - slack sketch file for slack integration, sent a message to your slack webhook [info](./slack/slack.md)
 - telegram_blink swith the led from esp8266 on and off with a telegram bot
 - telegram_sensor read the dht11 sensor data with a telegram bot
+- tokens reading token(tag or card) with MFRC522
