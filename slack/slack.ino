@@ -3,9 +3,6 @@
 #include <arduino_wifi_secrets.h>
 #include <arduino_slack_secrets.h>
 
-#define WIFI_SSID     SECRET_SSID
-#define WIFI_PASSWORD SECRET_PASS
-
 String url = SLACK_URL;
 const char *host = SLACK_HOST;
 const int httpsPort = SLACK_PORT;

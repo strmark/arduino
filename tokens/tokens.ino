@@ -36,7 +36,7 @@ void loop() {
     Serial.println();
     Serial.print("Message : ");
     content.toUpperCase();
-    if (content.substring(1) == SECRET_TAG || content.substring(1) == SECRET_CARD) {
+    if (content.substring(1) == TOKEN_TAG || content.substring(1) == TOKEN_CARD) {
         Serial.println("Authorized");
         Serial.println();
         delay(3000);

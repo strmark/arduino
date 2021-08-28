@@ -5,10 +5,8 @@
 #include <arduino_wifi_secrets.h>
 #include <arduino_mqtt_secrets.h>
 
-#define WIFI_SSID SECRET_SSID
-#define WIFI_PASSWORD SECRET_PASS
 // #define MQTT_HOST IPAddress(192, 168, 1, XXX)
-#define MQTT_HOST PI_SERVER
+#define MQTT_HOST MQTT_SERVER
 #define MQTT_PORT 1883
 
 // MQTT Topics
