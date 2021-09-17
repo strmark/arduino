@@ -1,2 +1,2 @@
-#define SECRET_SSID "ssid"
-#define SECRET_PASS "passwd"
+#define WIFI_SSID "ssid"
+#define WIFI_PASSWORD "passwd"

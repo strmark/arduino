@@ -5,19 +5,13 @@
 #include <arduino_wifi_secrets.h>
 #include <arduino_telegram_secrets.h>
 
-#define WIFI_SSID SECRET_SSID
-#define WIFI_PASSWORD SECRET_PASS
-
-#define BOTtoken SECRET_BOT_TOKEN
-#define CHAT_ID SECRET_CHAT_ID
-
 #define ANA A0
 #define DIGI D5
 #define SENSOR D7
 
 X509List cert(TELEGRAM_CERTIFICATE_ROOT);
 WiFiClientSecure client;
-UniversalTelegramBot bot(BOTtoken, client);
+UniversalTelegramBot bot(BOT_TOKEN, client);
 
 int botRequestDelay = 1000;
 unsigned long lastTimeBotRan;

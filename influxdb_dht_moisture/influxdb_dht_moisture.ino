@@ -5,23 +5,16 @@
 #include <arduino_wifi_secrets.h>
 #include <arduino_influxdb_secrets.h>
 
-#define WIFI_SSID SECRET_SSID
-#define WIFI_PASSWORD SECRET_PASS
-#define INFLUXDB_URL SECRET_INFLUXDB_URL
-#define INFLUXDB_TOKEN SECRET_INFLUXDB_TOKEN
-#define INFLUXDB_ORG SECRET_INFLUXDB_ORG
-#define INFLUXDB_BUCKET SECRET_INFLUXDB_BUCKET
 #define TZ_INFO "CET-1CEST,M3.5.0,M10.5.0/3"
-
-// adjust value while testing the sensor
-static const int dry_sensor = 721;
-static const int wet_sensor = 296;
-
 // Digital pin connected to the DHT sensor
 #define DHTPIN D3
 #define DHTSWITCH D2
 #define MOISTPIN A0
 #define MOISTSWITCH D5
+
+// adjust value while testing the sensor
+static const int dry_sensor = 721;
+static const int wet_sensor = 296;
 
 ESP8266WiFiMulti wifiMulti;
 
