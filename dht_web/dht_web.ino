@@ -18,9 +18,10 @@ AsyncWebServer server(80);
 unsigned long previousMillis = 0;    // will store last time DHT was updated
 
 // Updates readings every 60 seconds
-const long interval = 1000*60;  
+const long interval = 1000 * 60;
 
-const char index_html[] PROGMEM = R"rawliteral(
+const char index_html[]
+PROGMEM = R"rawliteral(
 <!DOCTYPE HTML><html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -82,64 +83,64 @@ setInterval(function ( ) {
 </script>
 </html>)rawliteral";
 
-String processor(const String& var){
-  if(var == "TEMPERATURE"){
-    return String(temp);
-  }
-  if(var == "HUMIDITY"){
-    return String(hum);
-  }
-  return String();
-}
-
-void setup(){
-  Serial.begin(115200);
-  dht.setup(DHTPIN, DHTesp::DHT22);
-  pinMode(DHTSWITCH, OUTPUT);
-
-  Serial.println(WIFI_SSID);
-  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
-  Serial.println("Connecting to WiFi");
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(1000);
-    Serial.println(".");
-  }
-  Serial.println(WiFi.localIP());
-
-  // Route for web pages
-  server.on("/", HTTP_GET, [](AsyncWebServerRequest *request){
-    request->send_P(200, "text/html", index_html, processor);
-  });
-  server.on("/temperature", HTTP_GET, [](AsyncWebServerRequest *request){
-    request->send_P(200, "text/plain", String(temp).c_str());
-  });
-  server.on("/humidity", HTTP_GET, [](AsyncWebServerRequest *request){
-    request->send_P(200, "text/plain", String(hum).c_str());
-  });
-
-  server.begin();
-}
- 
-void loop(){  
-  unsigned long currentMillis = millis();
-  if (currentMillis - previousMillis >= interval) {
-    // save the last time you updated the DHT values
-    previousMillis = currentMillis;
-    digitalWrite(DHTSWITCH, HIGH);
-    //bug DHT11 = 1000 else 2000
-    delay(dht.getMinimumSamplingPeriod() * 2);
-
-    float newTemp = dht.getTemperature();
-    float newHum = dht.getHumidity();
-
-    if (isnan(newTemp) || isnan(newHum)) {
-      Serial.println("Failed to read from DHT sensor!");
-    } else {
-      temp = newTemp;
-      Serial.println(temp);
-      hum = newHum;
-      Serial.println(hum);
+String processor(const String &var) {
+    if (var == "TEMPERATURE") {
+        return String(temp);
     }
-    digitalWrite(DHTSWITCH, LOW);
-  }
+    if (var == "HUMIDITY") {
+        return String(hum);
+    }
+    return String();
+}
+
+void setup() {
+    Serial.begin(115200);
+    dht.setup(DHTPIN, DHTesp::DHT22);
+    pinMode(DHTSWITCH, OUTPUT);
+
+    Serial.println(WIFI_SSID);
+    WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+    Serial.println("Connecting to WiFi");
+    while (WiFi.status() != WL_CONNECTED) {
+        delay(1000);
+        Serial.println(".");
+    }
+    Serial.println(WiFi.localIP());
+
+    // Route for web pages
+    server.on("/", HTTP_GET, [](AsyncWebServerRequest *request) {
+        request->send_P(200, "text/html", index_html, processor);
+    });
+    server.on("/temperature", HTTP_GET, [](AsyncWebServerRequest *request) {
+        request->send_P(200, "text/plain", String(temp).c_str());
+    });
+    server.on("/humidity", HTTP_GET, [](AsyncWebServerRequest *request) {
+        request->send_P(200, "text/plain", String(hum).c_str());
+    });
+
+    server.begin();
+}
+
+void loop() {
+    unsigned long currentMillis = millis();
+    if (currentMillis - previousMillis >= interval) {
+        // save the last time you updated the DHT values
+        previousMillis = currentMillis;
+        digitalWrite(DHTSWITCH, HIGH);
+        //bug DHT11 = 1000 else 2000
+        delay(dht.getMinimumSamplingPeriod() * 2);
+
+        float newTemp = dht.getTemperature();
+        float newHum = dht.getHumidity();
+
+        if (isnan(newTemp) || isnan(newHum)) {
+            Serial.println("Failed to read from DHT sensor!");
+        } else {
+            temp = newTemp;
+            Serial.println(temp);
+            hum = newHum;
+            Serial.println(hum);
+        }
+        digitalWrite(DHTSWITCH, LOW);
+    }
 }

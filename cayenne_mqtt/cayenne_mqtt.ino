@@ -11,7 +11,6 @@ void loop() {
     Cayenne.loop();
 }
 
-
 CAYENNE_OUT_DEFAULT() {
     // Write data to Cayenne
     Cayenne.virtualWrite(0, millis());
